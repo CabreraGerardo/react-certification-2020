@@ -1,5 +1,7 @@
 .homepage {
   text-align: center;
+  overflow-x: scroll;
+  padding-top: 80px;
 }
 
 .homepage h1 {
