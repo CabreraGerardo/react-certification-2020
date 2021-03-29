@@ -26,20 +26,34 @@ import logo from '../../assets/logo.png';
 
 // import './Navbar.styles.css';
 
-function Navbar() {
+function Navbar({ handleNavbarSearch }) {
   const [darkTheme, setDarkTheme] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [search, setSearch] = useState('Wizeline');
 
   const toggleDarkMode = () => setDarkTheme(!darkTheme);
   const toggleMobileMenu = () => setMobileMenu(!mobileMenu);
+
+  const handleInput = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handleSearch = () => {
+    handleNavbarSearch(search);
+  };
 
   return (
     <>
       <Wrapper>
         <Logo src={logo} alt="Logo" />
         <Left>
-          <SearchInput type="text" placeholder="Search..." />
-          <SearchButton>
+          <SearchInput
+            value={search}
+            onChange={handleInput}
+            type="text"
+            placeholder="Search..."
+          />
+          <SearchButton onClick={handleSearch}>
             <FontAwesomeIcon icon={faSearch} />
           </SearchButton>
         </Left>

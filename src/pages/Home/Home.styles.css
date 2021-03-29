@@ -1,7 +1,9 @@
 .homepage {
   text-align: center;
-  overflow-x: scroll;
+  overflow-x: hidden;
   padding-top: 80px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .homepage h1 {

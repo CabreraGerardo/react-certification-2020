@@ -68,6 +68,7 @@ export const Title = styled.strong`
 export const TitleBar = styled.div`
   padding: 8px 5px;
   padding-left: 75px;
+  padding-right: 25px;
   margin-right: 10px;
   margin-left: -60px;
   margin-bottom: 10px;

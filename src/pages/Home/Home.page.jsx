@@ -3,12 +3,11 @@ import ResultsList from '../../components/ResultsList';
 
 import './Home.styles.css';
 
-function HomePage() {
+function HomePage({ search }) {
   const sectionRef = useRef(null);
-
   return (
     <section className="homepage" ref={sectionRef}>
-      <ResultsList />
+      <ResultsList search={search} />
     </section>
   );
 }
