@@ -12,8 +12,48 @@ const Header = styled.h1`
   text-align: start;
 `;
 
-let videoList = [];
-let channelList = [];
+
+const createCards = (videos) => {
+  const channelList = videos
+    .filter((e) => e.id.kind.includes('channel'))
+    .map((video) => {
+      const {
+        snippet: { title, description, thumbnails },
+      } = video;
+
+      return (
+        <ChannelCard
+          id={video.etag}
+          title={title}
+          description={description}
+          thumbnail={thumbnails.medium.url}
+          key={video.etag}
+        />
+      );
+    });
+
+  const videoList = videos
+    .filter((e) => e.id.kind.includes('video'))
+    .map((video) => {
+      const {
+        snippet: { title, description, thumbnails, publishedAt, channelTitle },
+      } = video;
+
+      return (
+        <VideoCard
+          id={video.etag}
+          title={title}
+          description={description}
+          thumbnail={thumbnails.medium.url}
+          date={publishedAt}
+          channel={channelTitle}
+          key={video.etag}
+        />
+      );
+    });
+
+  return [channelList, videoList];
+};
 
 function ResultList({ search }) {
   const [loading, setLoading] = useState(false);
@@ -35,51 +75,15 @@ function ResultList({ search }) {
     fetchUsers();
   }, [search]);
 
-  channelList = videos
-    .filter((e) => e.id.kind.includes('channel'))
-    .map((video) => {
-      const {
-        snippet: { title, description, thumbnails },
-      } = video;
-
-      return (
-        <ChannelCard
-          id={video.etag}
-          title={title}
-          description={description}
-          thumbnail={thumbnails.medium.url}
-          key={video.etag}
-        />
-      );
-    });
-
-  videoList = videos
-    .filter((e) => e.id.kind.includes('video'))
-    .map((video) => {
-      const {
-        snippet: { title, description, thumbnails, publishedAt, channelTitle },
-      } = video;
-
-      return (
-        <VideoCard
-          id={video.etag}
-          title={title}
-          description={description}
-          thumbnail={thumbnails.medium.url}
-          date={publishedAt}
-          channel={channelTitle}
-          key={video.etag}
-        />
-      );
-    });
+  const [channelList, videoList] = createCards(videos);
 
   return (
     <div>
       {loading ? (
         <FontAwesomeIcon icon={faSpinner} />
-      ) : channelList.length > 0 || videoList.length > 0 ? (
+      ) : channelList?.length > 0 || videoList?.length > 0 ? (
         <>
-          {channelList.length > 0 ? (
+          {channelList?.length > 0 ? (
             <>
               <Header>Channels</Header>
               <div>{channelList}</div>
@@ -88,7 +92,7 @@ function ResultList({ search }) {
           ) : (
             <></>
           )}
-          {videoList.length > 0 ? (
+          {videoList?.length > 0 ? (
             <>
               <Header>Videos</Header>
               <div>{videoList}</div>
