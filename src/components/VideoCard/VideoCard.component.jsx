@@ -1,20 +1,26 @@
 import React from 'react';
+import { getTimeLapsed } from '../../utils/fns';
+import {
+  Description,
+  Image,
+  Text,
+  Title,
+  Video,
+  PublishedDate,
+  Channel,
+} from './VideoCard.styles';
 
-import './VideoCard.styles.css';
-
-function VideoCard({ title, description, thumbnail }) {
+function VideoCard({ id, title, description, thumbnail, date, channel }) {
   return (
-    <div className="video-card">
-      <div className="img" style={{ backgroundImage: `url(${thumbnail})` }} />
-      <div className="text">
-        <p>
-          <strong>{title}</strong>
-        </p>
-        <p>
-          <small className="text">{description}</small>
-        </p>
-      </div>
-    </div>
+    <Video data-testid={id}>
+      <Image style={{ backgroundImage: `url(${thumbnail})` }} />
+      <Text>
+        <Title>{title}</Title>
+        <Channel>By {channel}</Channel>
+        <Description>{description}</Description>
+        <PublishedDate>{getTimeLapsed(date)}</PublishedDate>
+      </Text>
+    </Video>
   );
 }
 

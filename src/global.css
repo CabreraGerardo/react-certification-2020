@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500&display=swap');
+
 html {
   font-size: 1.125rem;
   line-height: 1.6;
   font-weight: 400;
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -18,7 +20,7 @@ body {
   margin: 0;
   padding: 0;
   text-rendering: optimizeLegibility;
-  background-color: #dedede;
+  background-color: #ebe1e1;
 }
 
 .separator::before {
@@ -38,4 +40,9 @@ a:active {
 }
 
 hr {
+  margin: 50px 125px;
+}
+
+.active {
+  color: rgb(226, 119, 101);
 }
