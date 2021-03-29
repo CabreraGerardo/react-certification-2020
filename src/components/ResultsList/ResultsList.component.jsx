@@ -23,7 +23,7 @@ function ResultList({ search }) {
       try {
         setLoading(true);
         const res = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${search}%20Academy&key=AIzaSyCYebr8sO8pXiFu4JLVrgN1-ojkG5cqQ1E`
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${search}&key=AIzaSyCYebr8sO8pXiFu4JLVrgN1-ojkG5cqQ1E`
         ).catch(console.error);
         setLoading(false);
         const vid = await res.json();
@@ -78,7 +78,7 @@ function ResultList({ search }) {
   return (
     <div>
       {loading ? (
-        <FontAwesomeIcon icon={faSpinner} /> 
+        <FontAwesomeIcon icon={faSpinner} />
       ) : channelList.length > 0 || videoList.length > 0 ? (
         <>
           {channelList.length > 0 ? (
