@@ -43,6 +43,7 @@ export const Content = styled.div`
 
 export const Text = styled.div`
   flex: 2;
+  max-width: 240px;
 `;
 
 export const Description = styled.small`

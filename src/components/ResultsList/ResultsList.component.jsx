@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import VideoCard from '../VideoCard';
 import ChannelCard from '../ChannelCard';
+import { searchByKeyword } from '../../providers/youtube';
 
 const Header = styled.h1`
   margin: 0px 100px;
@@ -22,12 +23,9 @@ function ResultList({ search }) {
     const fetchUsers = async () => {
       try {
         setLoading(true);
-        const res = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${search}&key=AIzaSyCYebr8sO8pXiFu4JLVrgN1-ojkG5cqQ1E`
-        ).catch(console.error);
+        const data = await searchByKeyword(search);
         setLoading(false);
-        const vid = await res.json();
-        setVideos(vid.items);
+        setVideos(data.items);
       } catch (e) {
         console.log(e);
         setVideos([]);
