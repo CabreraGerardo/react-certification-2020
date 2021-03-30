@@ -12,4 +12,10 @@ export const VideoLayout = styled.div`
 
 export const Video = styled.div`
   height: 500px;
+  @media (max-width: 1030px) {
+    height: 400px;
+  }
+  @media (max-width: 480px) {
+    height: 200px;
+  }
 `;

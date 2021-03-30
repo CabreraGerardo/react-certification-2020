@@ -43,7 +43,7 @@ function RelatedVideosList() {
             title={title}
             description={description}
             thumbnail={url}
-            id={id}
+            id={id.videoId}
           />
         )
       )}

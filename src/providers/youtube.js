@@ -1,6 +1,6 @@
 export async function searchByKeyword(search) {
   const res = await fetch(
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${search}&key=${process.env.REACT_APP_YOUTUBE_API}`
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${search}&key=${process.env.REACT_APP_YOUTUBE_API}`
   ).catch(console.error);
   const videos = await res.json();
   return videos;
@@ -16,7 +16,7 @@ export async function getVideo(id) {
 
 export async function getRelatedVideos(id) {
   const res = await fetch(
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${id}&maxResults=10&type=video&key=${process.env.REACT_APP_YOUTUBE_API}`
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${id}&maxResults=5&type=video&key=${process.env.REACT_APP_YOUTUBE_API}`
   ).catch(console.error);
   const videos = await res.json();
   return videos;

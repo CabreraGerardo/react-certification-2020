@@ -1,31 +1,43 @@
 import styled from 'styled-components';
 
-export const Card = styled.div`
-  margin-bottom: 10px;
-  max-width: 100%;
-  border-radius: 8px;
-  @media (max-width: 768px) {
-    display: inline-block;
-    max-width: 50%;
-  }
-`;
-
 export const Content = styled.div`
   display: flex;
 `;
 
 export const Thumbnail = styled.div`
-  height: 100px;
+  height: 120px;
   max-width: 40%;
   border-radius: 8px;
   background-size: cover;
   background-position: center;
   flex: 1;
+  transition: 200ms;
+`;
+
+export const Card = styled.div`
+  margin-bottom: 10px;
+  max-width: 100%;
+  border-radius: 8px;
+  transition: 200ms;
+  @media (max-width: 768px) {
+    display: inline-block;
+    max-width: 50%;
+  }
+  @media (max-width: 500px) {
+    display: inline-block;
+    max-width: 100%;
+  }
+  &:hover {
+    background-color: #fefefe;
+    cursor: pointer;
+  }
+  &:hover ${Thumbnail} {
+    height: 125px;
+  }
 `;
 
 export const Text = styled.div`
-  padding-left: 12px;
-  padding-right: 12px;
+  padding: 12px;
   flex-direction: column;
   flex: 1;
   max-width: 60%;

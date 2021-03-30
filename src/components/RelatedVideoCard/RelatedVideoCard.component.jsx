@@ -1,10 +1,26 @@
 import React from 'react';
-import { Card, Text, Thumbnail, Title, Description, Content } from './RelatedVideoCard.styles';
+import { useHistory } from 'react-router';
+import {
+  Card,
+  Text,
+  Thumbnail,
+  Title,
+  Description,
+  Content,
+} from './RelatedVideoCard.styles';
 
 export default function RelatedVideoCard({ title, description, thumbnail, id }) {
-  
+  const history = useHistory();
+
+  const goToVideo = async (videoId) => {
+    history.push({
+      pathname: '/player',
+      state: { videoId },
+    });
+  };
+
   return (
-    <Card data-testid={id}>
+    <Card data-testid={id} onClick={() => goToVideo(id)}>
       <Content>
         <Thumbnail style={{ backgroundImage: `url(${thumbnail})` }} />
         <Text>
@@ -13,5 +29,5 @@ export default function RelatedVideoCard({ title, description, thumbnail, id }) 
         </Text>
       </Content>
     </Card>
-  )
+  );
 }
