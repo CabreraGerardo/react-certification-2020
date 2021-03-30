@@ -23,14 +23,20 @@ describe('Testing if data renders correctly', () => {
   test('Test if first element is being rendered', () => {
     render(<ResultList />);
     const { items } = data;
-    const element = screen.getByTestId(items[0].etag);
+    const element = screen.getByTestId(
+      items.id.kind.includes('channel') ? items[0].id.channelId : items[0].id.videoId
+    );
     expect(element).toBeInTheDocument();
   });
 
   test('Test if last element is being rendered', () => {
     render(<ResultList />);
     const { items } = data;
-    const element = screen.getByTestId(items[items.length - 1].etag);
+    const element = screen.getByTestId(
+      items[items.length - 1].id.kind.includes('channel')
+        ? items[items.length - 1].id.channelId
+        : items[items.length - 1].id.videoId
+    );
     expect(element).toBeInTheDocument();
   });
 

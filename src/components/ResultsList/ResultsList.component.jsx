@@ -12,7 +12,6 @@ const Header = styled.h1`
   text-align: start;
 `;
 
-
 const createCards = (videos) => {
   const channelList = videos
     .filter((e) => e.id.kind.includes('channel'))
@@ -23,7 +22,7 @@ const createCards = (videos) => {
 
       return (
         <ChannelCard
-          id={video.etag}
+          id={video.id.channelId}
           title={title}
           description={description}
           thumbnail={thumbnails.medium.url}
@@ -41,7 +40,7 @@ const createCards = (videos) => {
 
       return (
         <VideoCard
-          id={video.etag}
+          id={video.id.videoId}
           title={title}
           description={description}
           thumbnail={thumbnails.medium.url}

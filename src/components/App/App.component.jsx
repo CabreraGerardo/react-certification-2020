@@ -9,6 +9,7 @@ import SecretPage from '../../pages/Secret';
 import Private from '../Private';
 import Layout from '../Layout';
 import Navbar from '../Navbar';
+import PlayerPage from '../../pages/Player';
 
 function App() {
   const [search, setSearch] = useState('Wizeline');
@@ -25,6 +26,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <HomePage search={search} />
+            </Route>
+            <Route exact path="/player">
+              <PlayerPage />
             </Route>
             <Route exact path="/login">
               <LoginPage />
