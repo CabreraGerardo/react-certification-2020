@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  padding-top: 50px;
-  padding-bottom: 80px;
+export const RelatedVideos = styled.div`
   display: flex;
-  width: 100vw;
+  flex-direction: column;
+  width: 30vw;
+  padding: 25px;
   @media (max-width: 768px) {
     display: inline-block;
+    width: 100vw;
   }
 `;
