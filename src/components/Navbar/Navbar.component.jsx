@@ -92,7 +92,11 @@ function Navbar({ handleNavbarSearch }) {
       {mobileMenu ? (
         <MobileMenu>
           <Icon>
-            <FontAwesomeIcon className="active" icon={faHome} />
+            <FontAwesomeIcon
+              onClick={() => goTo('/')}
+              className={pathname === '/' ? 'active' : ''}
+              icon={faHome}
+            />
           </Icon>
           <Icon>
             <FontAwesomeIcon icon={faHeart} />
