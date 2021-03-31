@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
@@ -30,6 +32,8 @@ function Navbar({ handleNavbarSearch }) {
   const [darkTheme, setDarkTheme] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [search, setSearch] = useState('Wizeline');
+  const { pathname } = useLocation();
+  const history = useHistory();
 
   const toggleDarkMode = () => setDarkTheme(!darkTheme);
   const toggleMobileMenu = () => setMobileMenu(!mobileMenu);
@@ -40,6 +44,10 @@ function Navbar({ handleNavbarSearch }) {
 
   const handleSearch = () => {
     handleNavbarSearch(search);
+  };
+
+  const goTo = (path) => {
+    history.push(path);
   };
 
   return (
@@ -58,8 +66,8 @@ function Navbar({ handleNavbarSearch }) {
           </SearchButton>
         </Left>
         <Center>
-          <Icon>
-            <FontAwesomeIcon className="active" icon={faHome} />
+          <Icon onClick={() => goTo('/')}>
+            <FontAwesomeIcon className={pathname === '/' ? 'active' : ''} icon={faHome} />
           </Icon>
           <Icon>
             <FontAwesomeIcon icon={faHeart} />
