@@ -4,7 +4,9 @@
   padding-top: 80px;
   padding-bottom: 80px;
   display: flex;
+  justify-content: center;
   align-items: flex-start;
+  min-width: 100%;
 }
 
 .homepage h1 {

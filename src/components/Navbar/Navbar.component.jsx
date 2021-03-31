@@ -47,7 +47,7 @@ function Navbar({ handleNavbarSearch }) {
   };
 
   const goTo = (path) => {
-    history.push(path);
+    if (pathname !== path) history.push(path);
   };
 
   return (
