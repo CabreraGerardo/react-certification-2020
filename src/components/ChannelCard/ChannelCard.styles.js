@@ -16,10 +16,11 @@ export const Channel = styled.div`
   height: 150px;
   border-radius: 8px;
   display: inline-block;
-  margin: 25px 25px;
+  margin: 15px 20px;
   vertical-align: top;
   text-align: left;
   transition: 200ms;
+  position: relative;
   &:hover {
     cursor: pointer;
     margin-top: 20px;
@@ -33,7 +34,7 @@ export const Channel = styled.div`
     margin-bottom: 20px;
   }
   @media (max-width: 768px) {
-    max-width: 320px;
+    max-width: 300px;
   }
 `;
 

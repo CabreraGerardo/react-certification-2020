@@ -8,7 +8,7 @@ import ChannelCard from '../ChannelCard';
 import { searchByKeyword } from '../../providers/youtube';
 
 const Header = styled.h1`
-  margin: 0px 100px;
+  margin-left: 10%;
   text-align: start;
 `;
 

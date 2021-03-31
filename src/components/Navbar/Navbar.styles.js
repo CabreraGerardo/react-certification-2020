@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   height: 55px;
   padding: 10px 20px;
   width: 100%;
+  max-width: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -14,10 +15,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Left = styled.div`
+  display: flex;
   text-align: left;
   flex: 1;
-  display: flex;
-
   @media (max-width: 768px) {
     flex: 2;
   }
