@@ -24,7 +24,7 @@ export const Channel = styled.div`
   &:hover {
     cursor: pointer;
     margin-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   &:hover ${Image} {
     width: 180px;
