@@ -7,9 +7,8 @@ import RelatedVideoCard from '../RelatedVideoCard/RelatedVideoCard.component';
 function RelatedVideosList() {
   const [videos, setVideos] = useState(null);
 
-  const {
-    state: { videoId },
-  } = useLocation();
+  const location = useLocation();
+  const { videoId } = location || { videoId: null };
 
   useEffect(() => {
     const fetchVideo = async () => {

@@ -8,9 +8,8 @@ function VideoPlayer() {
   const [player, setPlayer] = useState(null);
   const [video, setVideo] = useState(null);
 
-  const {
-    state: { videoId },
-  } = useLocation();
+  const location = useLocation();
+  const { videoId } = location || { videoId: null };
 
   useEffect(() => {
     const fetchVideo = async () => {
