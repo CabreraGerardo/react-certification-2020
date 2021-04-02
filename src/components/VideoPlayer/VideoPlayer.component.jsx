@@ -29,12 +29,13 @@ function VideoPlayer() {
 
   console.log(video);
   const videoTag = parse(player?.embedHtml || '');
-
   return (
     <VideoLayout>
       <Video>{videoTag}</Video>
       <h1>{video?.title}</h1>
-      <small>{video?.description}</small>
+      <small style={{ whiteSpace: 'pre-wrap', padding: '15px' }}>
+        {video?.description}
+      </small>
     </VideoLayout>
   );
 }

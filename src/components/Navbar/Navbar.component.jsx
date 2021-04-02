@@ -40,6 +40,7 @@ function Navbar({ handleNavbarSearch }) {
 
   const handleInput = (event) => {
     setSearch(event.target.value);
+    if (pathname !== '/') history.push('/');
   };
 
   const handleSearch = () => {
