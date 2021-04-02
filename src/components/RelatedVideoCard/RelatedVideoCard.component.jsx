@@ -16,6 +16,7 @@ const RelatedVideoCard = ({ title, description, thumbnail, id }) => {
     history.push({
       pathname: '/player',
       state: { videoId },
+      search: `?v=${videoId}`,
     });
   };
 

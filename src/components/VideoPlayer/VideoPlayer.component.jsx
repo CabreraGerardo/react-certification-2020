@@ -8,25 +8,26 @@ function VideoPlayer() {
   const [player, setPlayer] = useState(null);
   const [video, setVideo] = useState(null);
 
-  const location = useLocation();
-  const { videoId } = location || { videoId: null };
+  let { search } = useLocation();
+  search = search.substring(3, search.length);
 
   useEffect(() => {
-    const fetchVideo = async () => {
-      try {
-        const data = await getVideo(videoId);
-        setPlayer(data.items[0].player);
-        setVideo(data.items[0].snippet);
-      } catch (e) {
-        console.log(e);
-        setPlayer(null);
-        setVideo(null);
-      }
-    };
-    fetchVideo();
-  }, [videoId]);
+    if (search) {
+      const fetchVideo = async () => {
+        try {
+          const data = await getVideo(search);
+          setPlayer(data?.items[0]?.player);
+          setVideo(data?.items[0]?.snippet);
+        } catch (e) {
+          console.log(e);
+          setPlayer(null);
+          setVideo(null);
+        }
+      };
+      fetchVideo(); 
+    }
+  }, [search]);
 
-  console.log(video);
   const videoTag = parse(player?.embedHtml || '');
   return (
     <VideoLayout>

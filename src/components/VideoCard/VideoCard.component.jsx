@@ -18,6 +18,7 @@ function VideoCard({ id, title, description, thumbnail, date, channel }) {
     history.push({
       pathname: '/player',
       state: { videoId },
+      search: `?v=${videoId}`,
     });
   };
 

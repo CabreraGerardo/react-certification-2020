@@ -7,22 +7,24 @@ import RelatedVideoCard from '../RelatedVideoCard/RelatedVideoCard.component';
 function RelatedVideosList() {
   const [videos, setVideos] = useState(null);
 
-  const location = useLocation();
-  const { videoId } = location || { videoId: null };
+  let { search } = useLocation();
+  search = search.substring(3, search.length);
 
   useEffect(() => {
-    const fetchVideo = async () => {
-      try {
-        const data = await getRelatedVideos(videoId);
-        setVideos(data.items);
-        console.log(data);
-      } catch (e) {
-        console.log(e);
-        setVideos(null);
-      }
-    };
-    fetchVideo();
-  }, [videoId]);
+    if (search){
+      const fetchVideo = async () => {
+        try {
+          const data = await getRelatedVideos(search);
+          setVideos(data.items);
+          console.log(data);
+        } catch (e) {
+          console.log(e);
+          setVideos(null);
+        }
+      };
+      fetchVideo();
+    }
+  }, [search]);
 
   return (
     <RelatedVideos>
