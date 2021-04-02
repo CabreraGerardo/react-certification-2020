@@ -1,11 +1,7 @@
-/* eslint-disable no-nested-ternary */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import VideoCard from '../VideoCard';
 import ChannelCard from '../ChannelCard';
-import { searchByKeyword } from '../../providers/youtube';
 
 const Header = styled.h1`
   margin-left: 10%;
@@ -14,7 +10,7 @@ const Header = styled.h1`
 
 const createCards = (videos) => {
   const channelList = videos
-    .filter((e) => e.id.kind.includes('channel'))
+    ?.filter((e) => e.id.kind.includes('channel'))
     .map((video) => {
       const {
         snippet: { title, description, thumbnails },
@@ -32,7 +28,7 @@ const createCards = (videos) => {
     });
 
   const videoList = videos
-    .filter((e) => e.id.kind.includes('video'))
+    ?.filter((e) => e.id.kind.includes('video'))
     .map((video) => {
       const {
         snippet: { title, description, thumbnails, publishedAt, channelTitle },
@@ -54,56 +50,27 @@ const createCards = (videos) => {
   return [channelList, videoList];
 };
 
-function ResultList({ search }) {
-  const [loading, setLoading] = useState(false);
-  const [videos, setVideos] = useState([]);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        setLoading(true);
-        const data = await searchByKeyword(search);
-        setLoading(false);
-        setVideos(data.items);
-      } catch (e) {
-        console.log(e);
-        setVideos([]);
-        setLoading(false);
-      }
-    };
-    fetchUsers();
-  }, [search]);
-
+function ResultList({ videos }) {
   const [channelList, videoList] = createCards(videos);
 
   return (
     <div>
-      {loading ? (
-        <FontAwesomeIcon icon={faSpinner} />
-      ) : channelList?.length > 0 || videoList?.length > 0 ? (
+      {channelList ? (
         <>
-          {channelList?.length > 0 ? (
-            <>
-              <Header>Channels</Header>
-              <div>{channelList}</div>
-              <hr />
-            </>
-          ) : (
-            <></>
-          )}
-          {videoList?.length > 0 ? (
-            <>
-              <Header>Videos</Header>
-              <div>{videoList}</div>
-            </>
-          ) : (
-            <></>
-          )}
+          <Header>Channels</Header>
+          <div>{channelList}</div>
+          <hr />
         </>
       ) : (
-        <h1 style={{ margin: '58px' }}>
-          Please, search for something on the search bar at the top left
-        </h1>
+        <></>
+      )}
+      {videoList ? (
+        <>
+          <Header>Videos</Header>
+          <div>{videoList}</div>
+        </>
+      ) : (
+        <></>
       )}
     </div>
   );
