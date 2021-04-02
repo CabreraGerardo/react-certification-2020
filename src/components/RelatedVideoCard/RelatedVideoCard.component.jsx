@@ -9,7 +9,7 @@ import {
   Content,
 } from './RelatedVideoCard.styles';
 
-export default function RelatedVideoCard({ title, description, thumbnail, id }) {
+const RelatedVideoCard = ({ title, description, thumbnail, id }) => {
   const history = useHistory();
 
   const goToVideo = async (videoId) => {
@@ -30,4 +30,6 @@ export default function RelatedVideoCard({ title, description, thumbnail, id }) 
       </Content>
     </Card>
   );
-}
+};
+
+export default RelatedVideoCard;
