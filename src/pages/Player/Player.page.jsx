@@ -21,7 +21,7 @@ function PlayerPage() {
   );
 
   const [loadingRelated, relatedVideos, relatedError] = useYoutube(
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${search}&maxResults=5&type=video&key=${process.env.REACT_APP_YOUTUBE_API}`
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${search}&maxResults=10&type=video&key=${process.env.REACT_APP_YOUTUBE_API}`
   );
 
   return (
