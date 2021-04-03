@@ -20,26 +20,15 @@ function RelatedVideosList({ videos, error, loading }) {
   } else if (!loading && videos?.items && !error) {
     content = (
       <RelatedVideos>
-        {videos?.items?.map(
-          ({
-            id,
-            snippet: {
-              title,
-              description,
-              thumbnails: {
-                medium: { url },
-              },
-            },
-          }) => (
-            <RelatedVideoCard
-              key={id.videoId}
-              title={title}
-              description={description}
-              thumbnail={url}
-              id={id.videoId}
-            />
-          )
-        )}
+        {videos?.items?.map(({ id, snippet }) => (
+          <RelatedVideoCard
+            key={id.videoId}
+            title={snippet?.title}
+            description={snippet?.description}
+            thumbnail={snippet?.thumbnails.medium.url}
+            id={id.videoId}
+          />
+        ))}
       </RelatedVideos>
     );
   }
