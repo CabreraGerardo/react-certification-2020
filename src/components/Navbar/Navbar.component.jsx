@@ -26,15 +26,14 @@ import {
 } from './Navbar.styles';
 
 import logo from '../../assets/logo.png';
-import { ThemeContext, themes } from '../../providers/modeProvider';
+import { AppContext, themes } from '../../providers/appProvider';
 
 // import './Navbar.styles.css';
 
-function Navbar({ handleNavbarSearch }) {
+function Navbar() {
   const [darkTheme, setDarkTheme] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [search, setSearch] = useState('Wizeline');
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme, setTheme, search, setSearch } = useContext(AppContext);
   const { pathname } = useLocation();
   const history = useHistory();
 
@@ -48,10 +47,6 @@ function Navbar({ handleNavbarSearch }) {
   const handleInput = (event) => {
     setSearch(event.target.value);
     if (pathname !== '/') history.push('/');
-  };
-
-  const handleSearch = () => {
-    handleNavbarSearch(search);
   };
 
   const goTo = (path) => {
@@ -69,7 +64,7 @@ function Navbar({ handleNavbarSearch }) {
             type="text"
             placeholder="Search..."
           />
-          <SearchButton onClick={handleSearch}>
+          <SearchButton>
             <FontAwesomeIcon icon={faSearch} />
           </SearchButton>
         </Left>

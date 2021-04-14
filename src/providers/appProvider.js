@@ -19,14 +19,20 @@ export const themes = {
   },
 };
 
-export const ThemeContext = React.createContext({
+export const AppContext = React.createContext({
   theme: themes.dark,
   setTheme: () => {},
+  search: 'Wizeline',
+  setSearch: () => {},
 });
 
-export function ModeProvider({ children }) {
+export function AppProvider({ children }) {
   const [theme, setTheme] = useState(themes.dark);
+  const [search, setSearch] = useState('Wizeline');
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>
+    <AppContext.Provider value={{ theme, setTheme, search, setSearch }}>
+      {children}
+    </AppContext.Provider>
   );
 }

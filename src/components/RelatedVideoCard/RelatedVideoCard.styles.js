@@ -28,7 +28,7 @@ export const Card = styled.div`
     max-width: 100%;
   }
   &:hover {
-    background-color: #fefefe;
+    background-color: ${(props) => props.theme.hoverColor};
     cursor: pointer;
   }
   &:hover ${Thumbnail} {

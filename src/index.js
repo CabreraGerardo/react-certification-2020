@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 
 import App from './components/App';
 import './global.css';
-import { ModeProvider } from './providers/modeProvider';
+import { AppProvider } from './providers/appProvider';
 
 ReactDOM.render(
-  <ModeProvider>
+  <AppProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </ModeProvider>,
+  </AppProvider>,
   document.getElementById('root')
 );

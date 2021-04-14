@@ -54,7 +54,7 @@ function ResultList({ videos }) {
   const [channelList, videoList] = createCards(videos);
 
   return (
-    <div>
+    <div style={{ width: '100vw' }}>
       {channelList ? (
         <>
           <Header>Channels</Header>
