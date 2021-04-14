@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +11,7 @@ import {
   faSignInAlt,
   faSun,
 } from '@fortawesome/free-solid-svg-icons';
+import { ThemeProvider } from 'styled-components';
 import {
   Wrapper,
   Left,
@@ -25,6 +26,7 @@ import {
 } from './Navbar.styles';
 
 import logo from '../../assets/logo.png';
+import { ThemeContext, themes } from '../../providers/modeProvider';
 
 // import './Navbar.styles.css';
 
@@ -32,10 +34,15 @@ function Navbar({ handleNavbarSearch }) {
   const [darkTheme, setDarkTheme] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [search, setSearch] = useState('Wizeline');
+  const { theme, setTheme } = useContext(ThemeContext);
   const { pathname } = useLocation();
   const history = useHistory();
 
-  const toggleDarkMode = () => setDarkTheme(!darkTheme);
+  const toggleDarkMode = () => {
+    setDarkTheme(!darkTheme);
+    setTheme(darkTheme ? themes.dark : themes.light);
+  };
+
   const toggleMobileMenu = () => setMobileMenu(!mobileMenu);
 
   const handleInput = (event) => {
@@ -52,7 +59,7 @@ function Navbar({ handleNavbarSearch }) {
   };
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Wrapper>
         <Logo src={logo} alt="Logo" />
         <Left>
@@ -116,7 +123,7 @@ function Navbar({ handleNavbarSearch }) {
       ) : (
         <> </>
       )}
-    </>
+    </ThemeProvider>
   );
 }
 

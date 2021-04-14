@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 
 import App from './components/App';
 import './global.css';
+import { ModeProvider } from './providers/modeProvider';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ModeProvider>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </ModeProvider>,
   document.getElementById('root')
 );

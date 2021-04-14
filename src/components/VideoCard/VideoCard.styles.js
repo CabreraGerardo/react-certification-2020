@@ -24,17 +24,17 @@ export const Video = styled.div`
   background-color: ${(props) => props.theme.itemBackground};
 
   &:hover {
-    background-color: #fcdfdf;
+    background-color: ${(props) => props.theme.hoverColor};
     margin-top: 10px;
     margin-bottom: 20px;
-    box-shadow: 6px 6px #cecece;
+    box-shadow: 6px 6px ${(props) => props.theme.shadowColor};
     cursor: pointer;
   }
 
   &:hover ${Image} {
     width: 336px;
     margin-left: -18px;
-    box-shadow: 8px 4px #bebebe;
+    box-shadow: 8px 4px ${(props) => props.theme.shadowColor};
   }
 `;
 

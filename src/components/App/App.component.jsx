@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import styled, { ThemeProvider } from 'styled-components';
@@ -7,27 +7,23 @@ import NotFound from '../../pages/NotFound';
 import Layout from '../Layout';
 import Navbar from '../Navbar';
 import PlayerPage from '../../pages/Player';
-
-const dark = {
-  navBackground: '#414141',
-  bodyBackground: '#313131',
-  itemBackground: '#525252',
-  fontColor: 'white',
-};
+import { ThemeContext } from '../../providers/modeProvider';
 
 const Container = styled.div`
   background-color: ${(props) => props.theme.bodyBackground};
+  transition: 200ms;
 `;
 
 function App() {
   const [search, setSearch] = useState('Wizeline');
+  const { theme } = useContext(ThemeContext);
 
   const onSearch = (term) => {
     setSearch(term);
   };
 
   return (
-    <ThemeProvider theme={dark}>
+    <ThemeProvider theme={theme}>
       <Container>
         <BrowserRouter>
           <Navbar handleNavbarSearch={onSearch} />
