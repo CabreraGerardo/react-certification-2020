@@ -6,7 +6,7 @@ import ResultList from './index';
 import VideoCard from '../VideoCard';
 import ChannelCard from '../ChannelCard';
 
-import data from '../../providers/data/mockData.json';
+import data from '../../services/data/mockData.json';
 
 describe('Testing if data is valid', () => {
   test('Mock data import is not null undefined', () => {

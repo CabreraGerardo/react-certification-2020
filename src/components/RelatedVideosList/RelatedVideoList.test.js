@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import TestRenderer from 'react-test-renderer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import data from '../../providers/data/mockData.json';
+import data from '../../services/data/mockData.json';
 import RelatedVideosList from './RelatedVideosList.component';
 
 describe('Items are shown correctly', () => {

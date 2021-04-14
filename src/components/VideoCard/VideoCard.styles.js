@@ -11,7 +11,6 @@ export const Image = styled.div`
 `;
 
 export const Video = styled.div`
-  background-color: #fefefe;
   max-width: 300px;
   height: 340px;
   border-radius: 8px;
@@ -21,6 +20,8 @@ export const Video = styled.div`
   text-align: left;
   transition: 200ms;
   position: relative;
+  color: ${(props) => props.theme.fontColor};
+  background-color: ${(props) => props.theme.itemBackground};
 
   &:hover {
     background-color: #fcdfdf;

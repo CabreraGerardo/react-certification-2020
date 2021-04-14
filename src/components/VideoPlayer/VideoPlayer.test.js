@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import TestRenderer from 'react-test-renderer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import VideoPlayer from './VideoPlayer.component';
-import data from '../../providers/data/mockData.json';
+import data from '../../services/data/mockData.json';
 
 describe('Props are shown correctly', () => {
   test('Props should appear on the page', () => {
