@@ -2,6 +2,7 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Navbar from './Navbar.component';
+import { AppProvider } from '../../providers/appProvider';
 
 jest.mock('react-router-dom', () => ({
   useLocation: jest.fn().mockReturnValue({
@@ -10,8 +11,13 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Icons are displayed', () => {
+  const rendered = TestRenderer.create(
+    <AppProvider>
+      <Navbar />
+    </AppProvider>
+  );
+
   test('Home icon appears', () => {
-    const rendered = TestRenderer.create(<Navbar />);
     const icon = rendered.root
       .findAllByType(FontAwesomeIcon)
       .find((e) => e.props.icon.iconName === 'home');
@@ -19,7 +25,6 @@ describe('Icons are displayed', () => {
   });
 
   test('Favorites icon appears', () => {
-    const rendered = TestRenderer.create(<Navbar />);
     const icon = rendered.root
       .findAllByType(FontAwesomeIcon)
       .find((e) => e.props.icon.iconName === 'heart');
@@ -27,7 +32,6 @@ describe('Icons are displayed', () => {
   });
 
   test('Log in icon appears', () => {
-    const rendered = TestRenderer.create(<Navbar />);
     const icon = rendered.root
       .findAllByType(FontAwesomeIcon)
       .find((e) => e.props.icon.iconName === 'sign-in-alt');
@@ -35,7 +39,6 @@ describe('Icons are displayed', () => {
   });
 
   test('Theme icon appears', () => {
-    const rendered = TestRenderer.create(<Navbar />);
     const icon = rendered.root
       .findAllByType(FontAwesomeIcon)
       .find((e) => e.props.icon.iconName === 'moon');
