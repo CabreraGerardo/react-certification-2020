@@ -52,7 +52,7 @@ const createCards = (videos) => {
 
 function ResultList({ videos }) {
   const [channelList, videoList] = createCards(videos);
-  
+
   return (
     <div style={{ width: '100vw' }}>
       {channelList?.length > 0 ? (

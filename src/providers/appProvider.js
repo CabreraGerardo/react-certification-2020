@@ -20,14 +20,25 @@ export const themes = {
   },
 };
 
+const getSystemTheme = () => {
+  let theme = themes.light;
+
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    theme = themes.dark;
+  }
+
+  return theme;
+};
+
 export const AppContext = React.createContext({
   theme: themes.dark,
   setTheme: () => {},
   search: 'Wizeline',
   setSearch: () => {},
 });
+
 const initial = {
-  theme: themes.dark,
+  theme: getSystemTheme(),
   search: 'Wizeline',
 };
 
