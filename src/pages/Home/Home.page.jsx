@@ -20,7 +20,6 @@ function HomePage() {
   let content = <FontAwesomeIcon icon={faSpinner} />;
 
   if (error) {
-    console.log(error);
     content = (
       <div style={{ display: 'inline' }}>
         <h1>
