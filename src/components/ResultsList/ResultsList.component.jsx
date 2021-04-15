@@ -52,10 +52,10 @@ const createCards = (videos) => {
 
 function ResultList({ videos }) {
   const [channelList, videoList] = createCards(videos);
-
+  
   return (
     <div style={{ width: '100vw' }}>
-      {channelList ? (
+      {channelList?.length > 0 ? (
         <>
           <Header>Channels</Header>
           <div>{channelList}</div>
@@ -64,10 +64,17 @@ function ResultList({ videos }) {
       ) : (
         <></>
       )}
-      {videoList ? (
+      {videoList?.length > 0 ? (
         <>
           <Header>Videos</Header>
           <div>{videoList}</div>
+        </>
+      ) : (
+        <></>
+      )}
+      {channelList?.length <= 0 && videoList?.length <= 0 ? (
+        <>
+          <Header>No Results</Header>
         </>
       ) : (
         <></>

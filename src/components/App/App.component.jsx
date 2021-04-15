@@ -16,7 +16,9 @@ const Container = styled.div`
 `;
 
 function App() {
-  const { theme } = useContext(AppContext);
+  const {
+    state: { theme },
+  } = useContext(AppContext);
 
   return (
     <ThemeProvider theme={theme}>

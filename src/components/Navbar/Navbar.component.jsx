@@ -31,22 +31,38 @@ import { AppContext, themes } from '../../providers/appProvider';
 // import './Navbar.styles.css';
 
 function Navbar() {
+  const {
+    state: { theme, search },
+    dispatch,
+  } = useContext(AppContext);
+
   const [darkTheme, setDarkTheme] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
-  const { theme, setTheme, search, setSearch } = useContext(AppContext);
+  const [searchTerm, setSearchTerm] = useState(search);
+
   const { pathname } = useLocation();
   const history = useHistory();
 
   const toggleDarkMode = () => {
     setDarkTheme(!darkTheme);
-    setTheme(darkTheme ? themes.dark : themes.light);
+    dispatch({
+      type: 'CHANGE_THEME',
+      payload: darkTheme ? themes.dark : themes.light,
+    });
   };
 
   const toggleMobileMenu = () => setMobileMenu(!mobileMenu);
 
-  const handleInput = (event) => {
-    setSearch(event.target.value);
+  const handleSearch = () => {
+    dispatch({
+      type: 'CHANGE_SEARCH',
+      payload: searchTerm,
+    });
     if (pathname !== '/') history.push('/');
+  };
+
+  const handleInput = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   const goTo = (path) => {
@@ -59,12 +75,12 @@ function Navbar() {
         <Logo src={logo} alt="Logo" />
         <Left>
           <SearchInput
-            value={search}
+            value={searchTerm}
             onChange={handleInput}
             type="text"
             placeholder="Search..."
           />
-          <SearchButton>
+          <SearchButton onClick={handleSearch}>
             <FontAwesomeIcon icon={faSearch} />
           </SearchButton>
         </Left>

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
+import reducer from '../state/appReducer';
 
 export const themes = {
   dark: {
@@ -25,14 +26,15 @@ export const AppContext = React.createContext({
   search: 'Wizeline',
   setSearch: () => {},
 });
+const initial = {
+  theme: themes.dark,
+  search: 'Wizeline',
+};
 
 export function AppProvider({ children }) {
-  const [theme, setTheme] = useState(themes.dark);
-  const [search, setSearch] = useState('Wizeline');
+  const [state, dispatch] = useReducer(reducer, initial);
 
   return (
-    <AppContext.Provider value={{ theme, setTheme, search, setSearch }}>
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>
   );
 }
