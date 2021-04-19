@@ -1,33 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import parse from 'html-react-parser';
 import { faHeart, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VideoLayout, Video, Icon, FavoritesButton } from './VideoPlayer.styles';
-import { checkIfFavorite } from '../../utils/fns';
-import { storage } from '../../utils/storage';
+import { checkIfFavorite, addToFavorites, removeFromFavorites } from '../../utils/fns';
 
 function VideoPlayer({ videoId, videos, error, loading }) {
-  const { player, snippet } = videos?.items
+  const { player, snippet, id, kind, etag } = videos?.items
     ? videos?.items[0]
-    : { player: null, snippet: null };
+    : { player: null, snippet: null, kind: null, id: null };
 
   const videoTag = parse(player?.embedHtml || '');
 
-  const [isFavorite, setFavorite] = useState(checkIfFavorite(videoId));
+  const [isFavorite, setFavorite] = useState(false);
+
+  useEffect(() => {
+    setFavorite(checkIfFavorite(videoId));
+  }, [isFavorite, videoId]);
 
   const handleFavoriteClick = () => {
     try {
       if (isFavorite) {
-        storage.remove(videoId);
+        removeFromFavorites(videoId);
       } else {
-        storage.set(videoId, videoId);
+        const video = {
+          etag,
+          id: {
+            kind,
+            videoId: id,
+          },
+          snippet,
+        };
+        addToFavorites(video);
       }
 
       setFavorite(!isFavorite);
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   let content = <div />;
 

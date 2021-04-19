@@ -37,7 +37,19 @@ function getTimeLapsed(publishedDate) {
 }
 
 function checkIfFavorite(videoId) {
-  return Boolean(storage.get(videoId));
+  return Boolean((storage.get('favorites') || []).find((e) => e.id.videoId === videoId));
 }
 
-export { random, getTimeLapsed, checkIfFavorite };
+function addToFavorites(video) {
+  storage.set('favorites', [...(storage.get('favorites') || []), video]);
+}
+
+function removeFromFavorites(videoId) {
+  const videos = storage.get('favorites');
+  const video = videos.find((e) => e.id.videoId === videoId);
+
+  if (video) videos.splice(videos.indexOf(video), 1);
+  storage.set('favorites', videos);
+}
+
+export { random, getTimeLapsed, checkIfFavorite, addToFavorites, removeFromFavorites };

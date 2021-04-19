@@ -88,7 +88,7 @@ function Navbar() {
           <Icon onClick={() => goTo('/')}>
             <FontAwesomeIcon className={pathname === '/' ? 'active' : ''} icon={faHome} />
           </Icon>
-          <Icon>
+          <Icon onClick={() => goTo('/favorites')}>
             <FontAwesomeIcon
               className={pathname === '/favorites' ? 'active' : ''}
               icon={faHeart}
