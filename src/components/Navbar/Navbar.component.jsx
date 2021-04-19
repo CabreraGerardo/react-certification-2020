@@ -89,7 +89,10 @@ function Navbar() {
             <FontAwesomeIcon className={pathname === '/' ? 'active' : ''} icon={faHome} />
           </Icon>
           <Icon>
-            <FontAwesomeIcon icon={faHeart} />
+            <FontAwesomeIcon
+              className={pathname === '/favorites' ? 'active' : ''}
+              icon={faHeart}
+            />
           </Icon>
         </Center>
         <Right>

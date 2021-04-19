@@ -55,4 +55,5 @@ hr {
 
 .active {
   color: rgb(226, 119, 101);
+  transition: 200ms;
 }

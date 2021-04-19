@@ -1,3 +1,5 @@
+import { storage } from './storage';
+
 function random(limit) {
   return Math.floor(Math.random() * limit);
 }
@@ -34,4 +36,8 @@ function getTimeLapsed(publishedDate) {
   return diff;
 }
 
-export { random, getTimeLapsed };
+function checkIfFavorite(videoId) {
+  return Boolean(storage.get(videoId));
+}
+
+export { random, getTimeLapsed, checkIfFavorite };

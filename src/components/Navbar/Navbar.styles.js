@@ -94,12 +94,6 @@ export const Icon = styled.i`
   }
 `;
 
-export const Active = styled(Icon)`
-  cursor: pointer;
-  color: rgb(252, 212, 212);
-  font-size: 1.35em;
-`;
-
 export const MobileMenu = styled.div`
   max-width: 480px;
   min-width: 80px;
