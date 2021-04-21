@@ -10,6 +10,7 @@ import PlayerPage from '../../pages/Player';
 import { AppContext } from '../../providers/appProvider';
 import AuthProvider from '../../providers/authProvider';
 import FavoritesPage from '../../pages/Favorites';
+import Private from '../Private/Private.component';
 
 const Container = styled.div`
   background-color: ${(props) => props.theme.bodyBackground};
@@ -36,9 +37,9 @@ function App() {
                 <Route exact path="/player">
                   <PlayerPage />
                 </Route>
-                <Route exact path="/favorites">
+                <Private exact path="/favorites">
                   <FavoritesPage />
-                </Route>
+                </Private>
                 <Route path="*">
                   <NotFound />
                 </Route>

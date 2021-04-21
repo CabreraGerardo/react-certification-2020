@@ -94,12 +94,16 @@ function Navbar() {
           <Icon onClick={() => goTo('/')}>
             <FontAwesomeIcon className={pathname === '/' ? 'active' : ''} icon={faHome} />
           </Icon>
-          <Icon onClick={() => goTo('/favorites')}>
-            <FontAwesomeIcon
-              className={pathname === '/favorites' ? 'active' : ''}
-              icon={faHeart}
-            />
-          </Icon>
+          {authenticated ? (
+            <Icon onClick={() => goTo('/favorites')}>
+              <FontAwesomeIcon
+                className={pathname === '/favorites' ? 'active' : ''}
+                icon={faHeart}
+              />
+            </Icon>
+          ) : (
+            <></>
+          )}
         </Center>
         <Right>
           {!authenticated ? (

@@ -21,7 +21,7 @@ function AuthProvider({ children }) {
     const isAuthenticated = Boolean(lastAuthState);
 
     setAuthenticated(isAuthenticated);
-  }, []);
+  }, [authenticated]);
 
   const login = useCallback(() => {
     setAuthenticated(true);
