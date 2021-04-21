@@ -9,6 +9,7 @@ export const themes = {
     fontColor: 'white',
     hoverColor: '#717171',
     shadowColor: '#212121',
+    inputColor: '#fefefe',
   },
   light: {
     navBackground: '#8c1b2f',
@@ -17,6 +18,7 @@ export const themes = {
     fontColor: 'black',
     hoverColor: '#fcdfdf',
     shadowColor: '#cecece',
+    inputColor: '#eee',
   },
 };
 

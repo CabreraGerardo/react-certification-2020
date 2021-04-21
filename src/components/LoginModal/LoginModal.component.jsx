@@ -1,14 +1,61 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Modal } from './LoginModal.styles';
+import { Modal, LoginForm, CloseButton, Input, LoginButton } from './LoginModal.styles';
 
 export default function LoginModal({ isOpen, onClose }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+  };
+
   return ReactDOM.createPortal(
     <Modal isOpen={isOpen}>
-      <span>Login</span>
-      <button type="button" onClick={onClose}>
-        Close
-      </button>
+      <h1>Login</h1>
+      <LoginForm onSubmit={handleLogin}>
+        <label htmlFor="email">
+          Email:
+          <br />
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="youremail@email.com"
+            onChange={handleEmailChange}
+            value={email}
+            required
+          />
+        </label>
+        <br />
+        <label htmlFor="password">
+          Password:
+          <br />
+          <Input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="********"
+            onChange={handlePasswordChange}
+            value={password}
+            required
+          />
+        </label>
+        <br />
+        <LoginButton type="submit">LogIn</LoginButton>
+      </LoginForm>
+      <CloseButton type="button" onClick={onClose}>
+        &times;
+      </CloseButton>
     </Modal>,
     document.body
   );
