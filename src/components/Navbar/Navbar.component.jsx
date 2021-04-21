@@ -27,6 +27,7 @@ import {
 
 import logo from '../../assets/logo.png';
 import { AppContext, themes } from '../../providers/appProvider';
+import LoginModal from '../LoginModal';
 
 // import './Navbar.styles.css';
 
@@ -35,6 +36,8 @@ function Navbar() {
     state: { theme, search },
     dispatch,
   } = useContext(AppContext);
+
+  const [open, setOpen] = useState(false);
 
   const [darkTheme, setDarkTheme] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -97,7 +100,12 @@ function Navbar() {
         </Center>
         <Right>
           <Icon>
-            <FontAwesomeIcon icon={faSignInAlt} />
+            <FontAwesomeIcon
+              onClick={() => {
+                setOpen(!open);
+              }}
+              icon={faSignInAlt}
+            />
           </Icon>
           <Icon>
             {darkTheme ? (
@@ -137,6 +145,7 @@ function Navbar() {
       ) : (
         <> </>
       )}
+      <LoginModal isOpen={open} onClose={() => setOpen(false)} />
     </ThemeProvider>
   );
 }
