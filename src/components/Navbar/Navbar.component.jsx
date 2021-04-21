@@ -9,6 +9,7 @@ import {
   faMoon,
   faSearch,
   faSignInAlt,
+  faSignOutAlt,
   faSun,
 } from '@fortawesome/free-solid-svg-icons';
 import { ThemeProvider } from 'styled-components';
@@ -28,6 +29,7 @@ import {
 import logo from '../../assets/logo.png';
 import { AppContext, themes } from '../../providers/appProvider';
 import LoginModal from '../LoginModal';
+import { useAuth } from '../../providers/authProvider';
 
 // import './Navbar.styles.css';
 
@@ -36,6 +38,7 @@ function Navbar() {
     state: { theme, search },
     dispatch,
   } = useContext(AppContext);
+  const { authenticated, logout } = useAuth();
 
   const [open, setOpen] = useState(false);
 
@@ -99,14 +102,26 @@ function Navbar() {
           </Icon>
         </Center>
         <Right>
-          <Icon>
-            <FontAwesomeIcon
-              onClick={() => {
-                setOpen(!open);
-              }}
-              icon={faSignInAlt}
-            />
-          </Icon>
+          {!authenticated ? (
+            <>
+              <span>Sign in</span>
+              <Icon>
+                <FontAwesomeIcon
+                  onClick={() => {
+                    setOpen(!open);
+                  }}
+                  icon={faSignInAlt}
+                />
+              </Icon>
+            </>
+          ) : (
+            <>
+              <span>Sign out</span>
+              <Icon>
+                <FontAwesomeIcon onClick={logout} icon={faSignOutAlt} />
+              </Icon>
+            </>
+          )}
           <Icon>
             {darkTheme ? (
               <FontAwesomeIcon icon={faSun} onClick={toggleDarkMode} />

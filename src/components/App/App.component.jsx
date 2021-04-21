@@ -8,6 +8,7 @@ import Layout from '../Layout';
 import Navbar from '../Navbar';
 import PlayerPage from '../../pages/Player';
 import { AppContext } from '../../providers/appProvider';
+import AuthProvider from '../../providers/authProvider';
 import FavoritesPage from '../../pages/Favorites';
 
 const Container = styled.div`
@@ -23,27 +24,29 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container>
-        <BrowserRouter>
-          <Navbar />
-          <Layout>
-            <Switch>
-              <Route exact path="/">
-                <HomePage />
-              </Route>
-              <Route exact path="/player">
-                <PlayerPage />
-              </Route>
-              <Route exact path="/favorites">
-                <FavoritesPage />
-              </Route>
-              <Route path="*">
-                <NotFound />
-              </Route>
-            </Switch>
-          </Layout>
-        </BrowserRouter>
-      </Container>
+      <AuthProvider>
+        <Container>
+          <BrowserRouter>
+            <Navbar />
+            <Layout>
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Route exact path="/player">
+                  <PlayerPage />
+                </Route>
+                <Route exact path="/favorites">
+                  <FavoritesPage />
+                </Route>
+                <Route path="*">
+                  <NotFound />
+                </Route>
+              </Switch>
+            </Layout>
+          </BrowserRouter>
+        </Container>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

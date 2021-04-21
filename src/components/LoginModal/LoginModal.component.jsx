@@ -1,11 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { useAuth } from '../../providers/authProvider';
 import { Modal, LoginForm, CloseButton, Input, LoginButton } from './LoginModal.styles';
 
 export default function LoginModal({ isOpen, onClose }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+
+  const { login } = useAuth();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -17,6 +21,13 @@ export default function LoginModal({ isOpen, onClose }) {
 
   const handleLogin = (event) => {
     event.preventDefault();
+    console.log(email, password)
+    if (email.trim() === 'Wizeline' && password.trim() === 'Rocks!') {
+      login();
+      onClose();
+    } else {
+      setError('The email or the password are incorrect');
+    }
   };
 
   return ReactDOM.createPortal(
@@ -29,7 +40,7 @@ export default function LoginModal({ isOpen, onClose }) {
           <Input
             id="email"
             name="email"
-            type="email"
+            type="text"
             placeholder="youremail@email.com"
             onChange={handleEmailChange}
             value={email}
@@ -52,6 +63,8 @@ export default function LoginModal({ isOpen, onClose }) {
         </label>
         <br />
         <LoginButton type="submit">LogIn</LoginButton>
+        <br />
+        <small>{error}</small>
       </LoginForm>
       <CloseButton type="button" onClick={onClose}>
         &times;
