@@ -2,6 +2,7 @@
 import React, { useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { AppContext } from '../../providers/appProvider';
+import login from '../../services/login';
 import {
   Modal,
   LoginForm,
@@ -28,10 +29,17 @@ export default function LoginModal({ isOpen, onClose }) {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    if (email.trim() === 'Wizeline' && password.trim() === 'Rocks!') {
-      dispatch({
-        type: 'LOG_IN',
-      });
+    if (email.trim() === 'wizeline' && password.trim() === 'Rocks!') {
+      try {
+        login(email.trim(), password.trim()).then((data) => {
+          dispatch({
+            type: 'LOG_IN',
+            payload: data,
+          });
+        });
+      } catch (err) {
+        console.error(err);
+      }
       onClose();
     } else {
       setError('The email or the password are incorrect');

@@ -21,6 +21,7 @@ export default function reducer(state, action) {
       return {
         ...state,
         authenticated: true,
+        user: action.payload,
       };
     }
     case 'LOG_OUT': {
@@ -28,6 +29,7 @@ export default function reducer(state, action) {
       return {
         ...state,
         authenticated: false,
+        user: null,
       };
     }
     default:

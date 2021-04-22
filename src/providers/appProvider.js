@@ -37,15 +37,14 @@ const getSystemTheme = () => {
 
 export const AppContext = React.createContext({
   theme: themes.dark,
-  setTheme: () => {},
   search: 'Wizeline',
-  setSearch: () => {},
 });
 
 const initial = {
   theme: getSystemTheme(),
   search: 'Wizeline',
   authenticated: Boolean(storage.get(AUTH_STORAGE_KEY)),
+  user: null,
 };
 
 export function AppProvider({ children }) {
