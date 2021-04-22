@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { storage } from '../utils/storage';
 
-const useYoutube = (requestUrl, isFavorites) => {
+export const useYoutube = (requestUrl, isFavorites) => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -38,5 +38,3 @@ const useYoutube = (requestUrl, isFavorites) => {
 
   return [loading, videos, error];
 };
-
-export default useYoutube;

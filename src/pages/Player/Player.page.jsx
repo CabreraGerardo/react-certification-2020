@@ -5,7 +5,7 @@ import VideoPlayer from '../../components/VideoPlayer';
 import RelatedVideosList from '../../components/RelatedVideosList';
 
 import { Container } from './Player.styles';
-import useYoutube from '../../hooks/useYoutube';
+import { useYoutube } from '../../hooks/useYoutube';
 
 function PlayerPage() {
   const history = useHistory();

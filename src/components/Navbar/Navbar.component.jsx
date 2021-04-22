@@ -35,7 +35,7 @@ function Navbar() {
     state: { theme, search, authenticated },
     dispatch,
   } = useContext(AppContext);
-  
+
   const [open, setOpen] = useState(false);
 
   const [darkTheme, setDarkTheme] = useState(false);
