@@ -45,7 +45,7 @@ export default function LoginModal({ isOpen, onClose }) {
       setError('The email or the password are incorrect');
     }
   };
-
+  
   return ReactDOM.createPortal(
     <Modal isOpen={isOpen}>
       <h1>Login</h1>

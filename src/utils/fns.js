@@ -1,9 +1,5 @@
 import { storage } from './storage';
 
-function random(limit) {
-  return Math.floor(Math.random() * limit);
-}
-
 function getTimeLapsed(publishedDate) {
   const milliseconds = Math.abs(new Date() - new Date(publishedDate));
   const seconds = Math.floor(milliseconds / 1000);
@@ -52,4 +48,4 @@ function removeFromFavorites(videoId) {
   storage.set('favorites', videos);
 }
 
-export { random, getTimeLapsed, checkIfFavorite, addToFavorites, removeFromFavorites };
+export { getTimeLapsed, checkIfFavorite, addToFavorites, removeFromFavorites };

@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal Component Tests Modal renders 1`] = `
+<div
+  class="sc-bdfBwQ ctjBof"
+>
+  <h1>
+    Login
+  </h1>
+  <form
+    class="sc-gsTCUz hxOkJz"
+  >
+    <label
+      for="email"
+    >
+      Email:
+      <br />
+      <input
+        class="sc-hKgILt ihGdRK"
+        id="email"
+        name="email"
+        placeholder="youremail@email.com"
+        required=""
+        type="text"
+        value=""
+      />
+    </label>
+    <br />
+    <label
+      for="password"
+    >
+      Password:
+      <br />
+      <input
+        class="sc-hKgILt ihGdRK"
+        id="password"
+        name="password"
+        placeholder="********"
+        required=""
+        type="password"
+        value=""
+      />
+    </label>
+    <br />
+    <button
+      class="sc-eCssSg bcXVum"
+      type="submit"
+    >
+      LogIn
+    </button>
+    <br />
+  </form>
+  <small
+    class="sc-jSgupP hWTVzv"
+  />
+  <button
+    class="sc-dlfnbm fKCcHc"
+    type="button"
+  >
+    ×
+  </button>
+</div>
+`;
