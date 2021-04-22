@@ -75,6 +75,36 @@ function Navbar() {
     if (pathname !== path) history.push(path);
   };
 
+  const authIcon = !authenticated ? (
+    <>
+      <span>Sign in</span>
+      <Icon>
+        <FontAwesomeIcon
+          onClick={() => {
+            setOpen(!open);
+          }}
+          icon={faSignInAlt}
+        />
+      </Icon>
+    </>
+  ) : (
+    <>
+      <span>Sign out</span>
+      <Icon>
+        <FontAwesomeIcon onClick={logout} icon={faSignOutAlt} />
+      </Icon>
+    </>
+  );
+
+  const favIcon = authenticated && (
+    <Icon onClick={() => goTo('/favorites')}>
+      <FontAwesomeIcon
+        className={pathname === '/favorites' ? 'active' : ''}
+        icon={faHeart}
+      />
+    </Icon>
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
@@ -94,38 +124,10 @@ function Navbar() {
           <Icon onClick={() => goTo('/')}>
             <FontAwesomeIcon className={pathname === '/' ? 'active' : ''} icon={faHome} />
           </Icon>
-          {authenticated ? (
-            <Icon onClick={() => goTo('/favorites')}>
-              <FontAwesomeIcon
-                className={pathname === '/favorites' ? 'active' : ''}
-                icon={faHeart}
-              />
-            </Icon>
-          ) : (
-            <></>
-          )}
+          {favIcon}
         </Center>
         <Right>
-          {!authenticated ? (
-            <>
-              <span>Sign in</span>
-              <Icon>
-                <FontAwesomeIcon
-                  onClick={() => {
-                    setOpen(!open);
-                  }}
-                  icon={faSignInAlt}
-                />
-              </Icon>
-            </>
-          ) : (
-            <>
-              <span>Sign out</span>
-              <Icon>
-                <FontAwesomeIcon onClick={logout} icon={faSignOutAlt} />
-              </Icon>
-            </>
-          )}
+          {authIcon}
           <Icon>
             {darkTheme ? (
               <FontAwesomeIcon icon={faSun} onClick={toggleDarkMode} />
@@ -147,12 +149,8 @@ function Navbar() {
               icon={faHome}
             />
           </Icon>
-          <Icon>
-            <FontAwesomeIcon icon={faHeart} />
-          </Icon>
-          <Icon>
-            <FontAwesomeIcon icon={faSignInAlt} />
-          </Icon>
+          {favIcon}
+          {authIcon}
           <Icon>
             {darkTheme ? (
               <FontAwesomeIcon icon={faSun} onClick={toggleDarkMode} />

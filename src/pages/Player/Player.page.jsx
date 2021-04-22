@@ -41,7 +41,7 @@ function PlayerPage() {
         videos={relatedVideos}
         error={relatedError}
         loading={loadingRelated}
-        favorite
+        favorite={favorite}
       />
     </Container>
   );
