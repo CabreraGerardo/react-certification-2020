@@ -9,13 +9,13 @@ import {
   Content,
 } from './RelatedVideoCard.styles';
 
-const RelatedVideoCard = ({ title, description, thumbnail, id }) => {
+const RelatedVideoCard = ({ title, description, thumbnail, id, favorite }) => {
   const history = useHistory();
 
   const goToVideo = async (videoId) => {
     history.push({
       pathname: '/player',
-      state: { videoId },
+      state: { videoId, favorite },
       search: `?v=${videoId}`,
     });
   };

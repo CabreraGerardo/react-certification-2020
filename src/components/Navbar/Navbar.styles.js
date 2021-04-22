@@ -35,6 +35,7 @@ export const Center = styled.div`
 export const Right = styled.div`
   text-align: right;
   flex: 1;
+  color: white;
   @media (max-width: 480px) {
     display: none;
   }

@@ -2,7 +2,14 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useAuth } from '../../providers/authProvider';
-import { Modal, LoginForm, CloseButton, Input, LoginButton } from './LoginModal.styles';
+import {
+  Modal,
+  LoginForm,
+  CloseButton,
+  Input,
+  LoginButton,
+  ErrorMessage,
+} from './LoginModal.styles';
 
 export default function LoginModal({ isOpen, onClose }) {
   const [email, setEmail] = useState('');
@@ -21,7 +28,6 @@ export default function LoginModal({ isOpen, onClose }) {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    console.log(email, password)
     if (email.trim() === 'Wizeline' && password.trim() === 'Rocks!') {
       login();
       onClose();
@@ -64,8 +70,8 @@ export default function LoginModal({ isOpen, onClose }) {
         <br />
         <LoginButton type="submit">LogIn</LoginButton>
         <br />
-        <small>{error}</small>
       </LoginForm>
+      <ErrorMessage>{error}</ErrorMessage>
       <CloseButton type="button" onClick={onClose}>
         &times;
       </CloseButton>

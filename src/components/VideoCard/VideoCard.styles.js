@@ -71,6 +71,7 @@ export const Channel = styled.p`
   bottom: 0;
   left: 20px;
   font-weight: 300;
+  max-width: 70%;
 `;
 
 export const PublishedDate = styled.p`

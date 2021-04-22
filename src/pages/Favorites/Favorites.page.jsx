@@ -9,7 +9,7 @@ export default function FavoritesPage() {
 
   return (
     <section className="favorites" ref={sectionRef}>
-      <ResultsList videos={storage.get('favorites') || []} />
+      <ResultsList videos={storage.get('favorites') || []} favorites />
     </section>
   );
 }
