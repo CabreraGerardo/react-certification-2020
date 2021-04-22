@@ -29,16 +29,12 @@ import {
 import logo from '../../assets/logo.png';
 import { AppContext, themes } from '../../providers/appProvider';
 import LoginModal from '../LoginModal';
-import { useAuth } from '../../providers/authProvider';
-
-// import './Navbar.styles.css';
 
 function Navbar() {
   const {
-    state: { theme, search },
+    state: { theme, search, authenticated },
     dispatch,
   } = useContext(AppContext);
-  const { authenticated, logout } = useAuth();
 
   const [open, setOpen] = useState(false);
 
@@ -73,6 +69,12 @@ function Navbar() {
 
   const goTo = (path) => {
     if (pathname !== path) history.push(path);
+  };
+
+  const logout = () => {
+    dispatch({
+      type: 'LOG_OUT',
+    });
   };
 
   const authIcon = !authenticated ? (

@@ -1,5 +1,8 @@
 import React, { useReducer } from 'react';
 import reducer from '../state/appReducer';
+import { storage } from '../utils/storage';
+
+const AUTH_STORAGE_KEY = 'login_state';
 
 export const themes = {
   dark: {
@@ -42,6 +45,7 @@ export const AppContext = React.createContext({
 const initial = {
   theme: getSystemTheme(),
   search: 'Wizeline',
+  authenticated: Boolean(storage.get(AUTH_STORAGE_KEY)),
 };
 
 export function AppProvider({ children }) {

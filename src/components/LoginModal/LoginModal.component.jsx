@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
-import { useAuth } from '../../providers/authProvider';
+import { AppContext } from '../../providers/appProvider';
 import {
   Modal,
   LoginForm,
@@ -16,7 +16,7 @@ export default function LoginModal({ isOpen, onClose }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  const { login } = useAuth();
+  const { dispatch } = useContext(AppContext);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -29,7 +29,9 @@ export default function LoginModal({ isOpen, onClose }) {
   const handleLogin = (event) => {
     event.preventDefault();
     if (email.trim() === 'Wizeline' && password.trim() === 'Rocks!') {
-      login();
+      dispatch({
+        type: 'LOG_IN',
+      });
       onClose();
     } else {
       setError('The email or the password are incorrect');
