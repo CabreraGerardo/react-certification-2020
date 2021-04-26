@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import parse from 'html-react-parser';
 import { faHeart, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VideoLayout, Video, Icon, FavoritesButton } from './VideoPlayer.styles';
 import { checkIfFavorite, addToFavorites, removeFromFavorites } from '../../utils/fns';
+import { AppContext } from '../../providers/appProvider';
 
 function VideoPlayer({ videoId, videos, error, loading }) {
+  const {
+    state: { authenticated },
+  } = useContext(AppContext);
+
   const { player, snippet, id, kind, etag } = videos?.items
     ? videos?.items[0]
     : { player: null, snippet: null, kind: null, id: null };
@@ -51,14 +56,16 @@ function VideoPlayer({ videoId, videos, error, loading }) {
       <>
         <Video>{videoTag}</Video>
         <h1>{snippet?.title}</h1>
-        <FavoritesButton onClick={handleFavoriteClick}>
-          <Icon>
-            <FontAwesomeIcon className={isFavorite ? 'active' : ''} icon={faHeart} />
-          </Icon>
-          <small style={{ marginLeft: '15px' }}>
-            {isFavorite ? 'Remove from' : 'Add to'} favorites
-          </small>
-        </FavoritesButton>
+        {authenticated && (
+          <FavoritesButton onClick={handleFavoriteClick}>
+            <Icon>
+              <FontAwesomeIcon className={isFavorite ? 'active' : ''} icon={faHeart} />
+            </Icon>
+            <small style={{ marginLeft: '15px' }}>
+              {isFavorite ? 'Remove from' : 'Add to'} favorites
+            </small>
+          </FavoritesButton>
+        )}
         <small style={{ whiteSpace: 'pre-wrap', padding: '15px' }}>
           {snippet?.description}
         </small>

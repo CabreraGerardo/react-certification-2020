@@ -15,3 +15,7 @@ Please refere to the following [GIST](https://gist.github.com/erickwize/d7311bfc
 
 3. Can you apply TDD once you already created components?
    - Yes, but the idea of TDD is to write the test first in order to code with that in mind.
+
+## NOTES
+
+Remember to create your .env file with the variable REACT_APP_YOUTUBE_API and your API key

@@ -75,6 +75,7 @@ function Navbar() {
     dispatch({
       type: 'LOG_OUT',
     });
+    if (pathname !== '/favorites') history.push('/');
   };
 
   const authIcon = !authenticated ? (
