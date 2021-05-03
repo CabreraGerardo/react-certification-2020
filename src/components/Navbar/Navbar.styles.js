@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   align-items: center;
-  background-color: #8c1b2f;
+  background-color: ${(props) => props.theme.navBackground};
   display: flex;
   height: 55px;
   padding: 10px 20px;
@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 1000;
+  transition: 200ms;
 `;
 
 export const Left = styled.div`

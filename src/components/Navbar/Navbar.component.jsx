@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +11,7 @@ import {
   faSignInAlt,
   faSun,
 } from '@fortawesome/free-solid-svg-icons';
+import { ThemeProvider } from 'styled-components';
 import {
   Wrapper,
   Left,
@@ -25,26 +26,43 @@ import {
 } from './Navbar.styles';
 
 import logo from '../../assets/logo.png';
+import { AppContext, themes } from '../../providers/appProvider';
 
 // import './Navbar.styles.css';
 
-function Navbar({ handleNavbarSearch }) {
+function Navbar() {
+  const {
+    state: { theme, search },
+    dispatch,
+  } = useContext(AppContext);
+
   const [darkTheme, setDarkTheme] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [search, setSearch] = useState('Wizeline');
+  const [searchTerm, setSearchTerm] = useState(search);
+
   const { pathname } = useLocation();
   const history = useHistory();
 
-  const toggleDarkMode = () => setDarkTheme(!darkTheme);
+  const toggleDarkMode = () => {
+    setDarkTheme(!darkTheme);
+    dispatch({
+      type: 'CHANGE_THEME',
+      payload: darkTheme ? themes.dark : themes.light,
+    });
+  };
+
   const toggleMobileMenu = () => setMobileMenu(!mobileMenu);
 
-  const handleInput = (event) => {
-    setSearch(event.target.value);
+  const handleSearch = () => {
+    dispatch({
+      type: 'CHANGE_SEARCH',
+      payload: searchTerm,
+    });
     if (pathname !== '/') history.push('/');
   };
 
-  const handleSearch = () => {
-    handleNavbarSearch(search);
+  const handleInput = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   const goTo = (path) => {
@@ -52,12 +70,12 @@ function Navbar({ handleNavbarSearch }) {
   };
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Wrapper>
         <Logo src={logo} alt="Logo" />
         <Left>
           <SearchInput
-            value={search}
+            value={searchTerm}
             onChange={handleInput}
             type="text"
             placeholder="Search..."
@@ -116,7 +134,7 @@ function Navbar({ handleNavbarSearch }) {
       ) : (
         <> </>
       )}
-    </>
+    </ThemeProvider>
   );
 }
 

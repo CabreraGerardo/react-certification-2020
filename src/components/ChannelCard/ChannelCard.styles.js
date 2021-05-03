@@ -21,6 +21,7 @@ export const Channel = styled.div`
   text-align: left;
   transition: 200ms;
   position: relative;
+  color: ${(props) => props.theme.fontColor};
   &:hover {
     cursor: pointer;
     margin-top: 20px;
@@ -76,5 +77,5 @@ export const TitleBar = styled.div`
   margin-bottom: 10px;
   margin-top: 15px;
   border-radius: 0px 25px 25px 0px;
-  background-color: #fefefe;
+  background-color: ${(props) => props.theme.itemBackground};
 `;

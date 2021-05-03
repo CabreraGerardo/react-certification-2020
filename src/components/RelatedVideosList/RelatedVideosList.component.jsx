@@ -21,7 +21,7 @@ function RelatedVideosList({ videos, error, loading }) {
     content = (
       <RelatedVideos>
         {videos?.items
-          ?.filter((e) => e.snippet)
+          ?.filter((e) => e.snippet && e.id?.kind?.includes('video'))
           .map(({ id, snippet }) => (
             <RelatedVideoCard
               key={id.videoId}

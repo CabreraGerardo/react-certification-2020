@@ -11,7 +11,6 @@ export const Image = styled.div`
 `;
 
 export const Video = styled.div`
-  background-color: #fefefe;
   max-width: 300px;
   height: 340px;
   border-radius: 8px;
@@ -21,19 +20,21 @@ export const Video = styled.div`
   text-align: left;
   transition: 200ms;
   position: relative;
+  color: ${(props) => props.theme.fontColor};
+  background-color: ${(props) => props.theme.itemBackground};
 
   &:hover {
-    background-color: #fcdfdf;
+    background-color: ${(props) => props.theme.hoverColor};
     margin-top: 10px;
     margin-bottom: 20px;
-    box-shadow: 6px 6px #cecece;
+    box-shadow: 6px 6px ${(props) => props.theme.shadowColor};
     cursor: pointer;
   }
 
   &:hover ${Image} {
     width: 336px;
     margin-left: -18px;
-    box-shadow: 8px 4px #bebebe;
+    box-shadow: 8px 4px ${(props) => props.theme.shadowColor};
   }
 `;
 
