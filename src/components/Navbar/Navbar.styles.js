@@ -35,6 +35,7 @@ export const Center = styled.div`
 export const Right = styled.div`
   text-align: right;
   flex: 1;
+  color: white;
   @media (max-width: 480px) {
     display: none;
   }
@@ -92,12 +93,6 @@ export const Icon = styled.i`
     color: rgb(219, 83, 59);
     font-size: 1.35em;
   }
-`;
-
-export const Active = styled(Icon)`
-  cursor: pointer;
-  color: rgb(252, 212, 212);
-  font-size: 1.35em;
 `;
 
 export const MobileMenu = styled.div`

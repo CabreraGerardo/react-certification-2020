@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { storage } from '../utils/storage';
 
-const useYoutube = (requestUrl) => {
+export const useYoutube = (requestUrl, isFavorites) => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -9,17 +10,22 @@ const useYoutube = (requestUrl) => {
     setLoading(true);
     const fetchApi = async () => {
       try {
-        const response = await fetch(requestUrl);
+        if (!isFavorites) {
+          const response = await fetch(requestUrl);
 
-        if (response.status === 403)
-          throw new Error(
-            "We searched a lot of videos! Youtube won't let us continue 😢"
-          );
-        const resJson = await response.json();
-        if (!response.ok) {
-          throw Error(resJson.message);
+          if (response.status === 403)
+            throw new Error(
+              "We searched a lot of videos! Youtube won't let us continue 😢"
+            );
+          const resJson = await response.json();
+          if (!response.ok) {
+            throw Error(resJson.message);
+          } else {
+            setVideos(resJson);
+            setLoading(false);
+          }
         } else {
-          setVideos(resJson);
+          setVideos({ items: storage.get('favorites') || [] });
           setLoading(false);
         }
       } catch (err) {
@@ -28,9 +34,7 @@ const useYoutube = (requestUrl) => {
     };
 
     fetchApi();
-  }, [requestUrl]);
+  }, [requestUrl, isFavorites]);
 
   return [loading, videos, error];
 };
-
-export default useYoutube;

@@ -1,0 +1,17 @@
+.favorites {
+  text-align: center;
+  overflow-x: hidden;
+  padding-top: 50px;
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 100%;
+  transition: 200ms;
+}
+
+.favorites h1 {
+  font-size: 3rem;
+  letter-spacing: -2px;
+  width: 100%;
+}

@@ -8,7 +8,7 @@ const Header = styled.h1`
   text-align: start;
 `;
 
-const createCards = (videos) => {
+const createCards = (videos, favorites) => {
   const channelList = videos
     ?.filter((e) => e.id.kind.includes('channel'))
     .map((video) => {
@@ -43,6 +43,7 @@ const createCards = (videos) => {
           date={publishedAt}
           channel={channelTitle}
           key={video.etag}
+          favorite={favorites}
         />
       );
     });
@@ -50,8 +51,8 @@ const createCards = (videos) => {
   return [channelList, videoList];
 };
 
-function ResultList({ videos }) {
-  const [channelList, videoList] = createCards(videos);
+function ResultList({ videos, favorites }) {
+  const [channelList, videoList] = createCards(videos, favorites);
 
   return (
     <div style={{ width: '100vw' }}>

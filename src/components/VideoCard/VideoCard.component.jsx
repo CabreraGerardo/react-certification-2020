@@ -11,13 +11,13 @@ import {
   Channel,
 } from './VideoCard.styles';
 
-function VideoCard({ id, title, description, thumbnail, date, channel }) {
+function VideoCard({ id, title, description, thumbnail, date, channel, favorite }) {
   const history = useHistory();
 
   const goToVideo = async (videoId) => {
     history.push({
       pathname: '/player',
-      state: { videoId },
+      state: { videoId, favorite },
       search: `?v=${videoId}`,
     });
   };

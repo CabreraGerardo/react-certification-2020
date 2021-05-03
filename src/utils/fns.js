@@ -1,6 +1,4 @@
-function random(limit) {
-  return Math.floor(Math.random() * limit);
-}
+import { storage } from './storage';
 
 function getTimeLapsed(publishedDate) {
   const milliseconds = Math.abs(new Date() - new Date(publishedDate));
@@ -34,4 +32,20 @@ function getTimeLapsed(publishedDate) {
   return diff;
 }
 
-export { random, getTimeLapsed };
+function checkIfFavorite(videoId) {
+  return Boolean((storage.get('favorites') || []).find((e) => e.id.videoId === videoId));
+}
+
+function addToFavorites(video) {
+  storage.set('favorites', [...(storage.get('favorites') || []), video]);
+}
+
+function removeFromFavorites(videoId) {
+  const videos = storage.get('favorites');
+  const video = videos.find((e) => e.id.videoId === videoId);
+
+  if (video) videos.splice(videos.indexOf(video), 1);
+  storage.set('favorites', videos);
+}
+
+export { getTimeLapsed, checkIfFavorite, addToFavorites, removeFromFavorites };

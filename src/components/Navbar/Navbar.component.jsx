@@ -9,6 +9,7 @@ import {
   faMoon,
   faSearch,
   faSignInAlt,
+  faSignOutAlt,
   faSun,
 } from '@fortawesome/free-solid-svg-icons';
 import { ThemeProvider } from 'styled-components';
@@ -27,14 +28,15 @@ import {
 
 import logo from '../../assets/logo.png';
 import { AppContext, themes } from '../../providers/appProvider';
-
-// import './Navbar.styles.css';
+import LoginModal from '../LoginModal';
 
 function Navbar() {
   const {
-    state: { theme, search },
+    state: { theme, search, authenticated },
     dispatch,
   } = useContext(AppContext);
+
+  const [open, setOpen] = useState(false);
 
   const [darkTheme, setDarkTheme] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -69,6 +71,43 @@ function Navbar() {
     if (pathname !== path) history.push(path);
   };
 
+  const logout = () => {
+    dispatch({
+      type: 'LOG_OUT',
+    });
+    if (pathname !== '/favorites') history.push('/');
+  };
+
+  const authIcon = !authenticated ? (
+    <>
+      <span>Sign in</span>
+      <Icon>
+        <FontAwesomeIcon
+          onClick={() => {
+            setOpen(!open);
+          }}
+          icon={faSignInAlt}
+        />
+      </Icon>
+    </>
+  ) : (
+    <>
+      <span>Sign out</span>
+      <Icon>
+        <FontAwesomeIcon onClick={logout} icon={faSignOutAlt} />
+      </Icon>
+    </>
+  );
+
+  const favIcon = authenticated && (
+    <Icon onClick={() => goTo('/favorites')}>
+      <FontAwesomeIcon
+        className={pathname === '/favorites' ? 'active' : ''}
+        icon={faHeart}
+      />
+    </Icon>
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
@@ -88,14 +127,10 @@ function Navbar() {
           <Icon onClick={() => goTo('/')}>
             <FontAwesomeIcon className={pathname === '/' ? 'active' : ''} icon={faHome} />
           </Icon>
-          <Icon>
-            <FontAwesomeIcon icon={faHeart} />
-          </Icon>
+          {favIcon}
         </Center>
         <Right>
-          <Icon>
-            <FontAwesomeIcon icon={faSignInAlt} />
-          </Icon>
+          {authIcon}
           <Icon>
             {darkTheme ? (
               <FontAwesomeIcon icon={faSun} onClick={toggleDarkMode} />
@@ -117,12 +152,8 @@ function Navbar() {
               icon={faHome}
             />
           </Icon>
-          <Icon>
-            <FontAwesomeIcon icon={faHeart} />
-          </Icon>
-          <Icon>
-            <FontAwesomeIcon icon={faSignInAlt} />
-          </Icon>
+          {favIcon}
+          {authIcon}
           <Icon>
             {darkTheme ? (
               <FontAwesomeIcon icon={faSun} onClick={toggleDarkMode} />
@@ -134,6 +165,7 @@ function Navbar() {
       ) : (
         <> </>
       )}
+      <LoginModal isOpen={open} onClose={() => setOpen(false)} />
     </ThemeProvider>
   );
 }

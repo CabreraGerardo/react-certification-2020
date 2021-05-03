@@ -1,3 +1,7 @@
+import { storage } from '../utils/storage';
+
+const AUTH_STORAGE_KEY = 'login_state';
+
 export default function reducer(state, action) {
   switch (action.type) {
     case 'CHANGE_THEME': {
@@ -10,6 +14,22 @@ export default function reducer(state, action) {
       return {
         ...state,
         search: action.payload,
+      };
+    }
+    case 'LOG_IN': {
+      storage.set(AUTH_STORAGE_KEY, true);
+      return {
+        ...state,
+        authenticated: true,
+        user: action.payload,
+      };
+    }
+    case 'LOG_OUT': {
+      storage.set(AUTH_STORAGE_KEY, false);
+      return {
+        ...state,
+        authenticated: false,
+        user: null,
       };
     }
     default:

@@ -2,7 +2,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useRef, useContext } from 'react';
 import ResultsList from '../../components/ResultsList';
-import useYoutube from '../../hooks/useYoutube';
+import { useYoutube } from '../../hooks/useYoutube';
 import { AppContext } from '../../providers/appProvider';
 
 import './Home.styles.css';

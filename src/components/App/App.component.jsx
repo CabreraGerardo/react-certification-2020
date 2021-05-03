@@ -8,6 +8,8 @@ import Layout from '../Layout';
 import Navbar from '../Navbar';
 import PlayerPage from '../../pages/Player';
 import { AppContext } from '../../providers/appProvider';
+import FavoritesPage from '../../pages/Favorites';
+import Private from '../Private/Private.component';
 
 const Container = styled.div`
   background-color: ${(props) => props.theme.bodyBackground};
@@ -33,6 +35,9 @@ function App() {
               <Route exact path="/player">
                 <PlayerPage />
               </Route>
+              <Private exact path="/favorites">
+                <FavoritesPage />
+              </Private>
               <Route path="*">
                 <NotFound />
               </Route>
