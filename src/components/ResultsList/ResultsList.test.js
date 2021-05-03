@@ -21,28 +21,34 @@ describe('Testing if data is valid', () => {
 
 describe('Testing if data renders correctly', () => {
   test('Test if first element is being rendered', () => {
-    render(<ResultList />);
+    render(<ResultList videos={data.items} />);
     const { items } = data;
-    const element = screen.getByTestId(items[0].etag);
+    const element = screen.getByTestId(
+      items[0].id.kind.includes('channel') ? items[0].id.channelId : items[0].id.videoId
+    );
     expect(element).toBeInTheDocument();
   });
 
   test('Test if last element is being rendered', () => {
-    render(<ResultList />);
+    render(<ResultList videos={data.items} />);
     const { items } = data;
-    const element = screen.getByTestId(items[items.length - 1].etag);
+    const element = screen.getByTestId(
+      items[items.length - 1].id.kind.includes('channel')
+        ? items[items.length - 1].id.channelId
+        : items[items.length - 1].id.videoId
+    );
     expect(element).toBeInTheDocument();
   });
 
   test('Test if number of videos is correct', () => {
-    const rendered = TestRenderer.create(<ResultList />);
+    const rendered = TestRenderer.create(<ResultList videos={data.items} />);
     const { items } = data;
     const cards = rendered.root.findAllByType(VideoCard);
     expect(cards.length).toEqual(items.filter((e) => e.id.kind.includes('video')).length);
   });
 
   test('Test if number of channels is correct', () => {
-    const rendered = TestRenderer.create(<ResultList />);
+    const rendered = TestRenderer.create(<ResultList videos={data.items} />);
     const { items } = data;
     const cards = rendered.root.findAllByType(ChannelCard);
     expect(cards.length).toEqual(

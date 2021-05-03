@@ -1,22 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import TestRenderer from 'react-test-renderer';
 import { getTimeLapsed } from '../../utils/fns';
-
-import ResultList from '../ResultsList';
 import VideoCard from './index';
-
-describe('Check Props Integrity', () => {
-  test('Props are not null/undefined', () => {
-    const rendered = TestRenderer.create(<ResultList />);
-    const card = rendered.root.findAllByType(VideoCard)[0];
-    expect(card.props.title).toBeTruthy();
-    expect(card.props.description).toBeTruthy();
-    expect(card.props.thumbnail).toBeTruthy();
-    expect(card.props.date).toBeTruthy();
-    expect(card.props.channel).toBeTruthy();
-  });
-});
 
 describe('Check if props are being rendered correctly', () => {
   test('Props show in element', () => {

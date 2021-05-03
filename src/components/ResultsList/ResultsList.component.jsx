@@ -3,55 +3,59 @@ import styled from 'styled-components';
 import VideoCard from '../VideoCard';
 import ChannelCard from '../ChannelCard';
 
-import videos from '../../providers/data/mockData.json';
-
 const Header = styled.h1`
-  margin: 0px 100px;
+  margin-left: 10%;
   text-align: start;
 `;
 
-const channelList = videos.items
-  .filter((e) => e.id.kind.includes('channel'))
-  .map((video) => {
-    const {
-      snippet: { title, description, thumbnails },
-    } = video;
+const createCards = (videos) => {
+  const channelList = videos
+    ?.filter((e) => e.id.kind.includes('channel'))
+    .map((video) => {
+      const {
+        snippet: { title, description, thumbnails },
+      } = video;
 
-    return (
-      <ChannelCard
-        id={video.etag}
-        title={title}
-        description={description}
-        thumbnail={thumbnails.medium.url}
-        key={video.etag}
-      />
-    );
-  });
+      return (
+        <ChannelCard
+          id={video.id.channelId}
+          title={title}
+          description={description}
+          thumbnail={thumbnails.medium.url}
+          key={video.etag}
+        />
+      );
+    });
 
-const videoList = videos.items
-  .filter((e) => e.id.kind.includes('video'))
-  .map((video) => {
-    const {
-      snippet: { title, description, thumbnails, publishedAt, channelTitle },
-    } = video;
+  const videoList = videos
+    ?.filter((e) => e.id.kind.includes('video'))
+    .map((video) => {
+      const {
+        snippet: { title, description, thumbnails, publishedAt, channelTitle },
+      } = video;
 
-    return (
-      <VideoCard
-        id={video.etag}
-        title={title}
-        description={description}
-        thumbnail={thumbnails.medium.url}
-        date={publishedAt}
-        channel={channelTitle}
-        key={video.etag}
-      />
-    );
-  });
+      return (
+        <VideoCard
+          id={video.id.videoId}
+          title={title}
+          description={description}
+          thumbnail={thumbnails.medium.url}
+          date={publishedAt}
+          channel={channelTitle}
+          key={video.etag}
+        />
+      );
+    });
 
-function ResultList() {
+  return [channelList, videoList];
+};
+
+function ResultList({ videos }) {
+  const [channelList, videoList] = createCards(videos);
+
   return (
     <div>
-      {channelList.length > 0 ? (
+      {channelList ? (
         <>
           <Header>Channels</Header>
           <div>{channelList}</div>
@@ -60,7 +64,7 @@ function ResultList() {
       ) : (
         <></>
       )}
-      {videoList.length > 0 ? (
+      {videoList ? (
         <>
           <Header>Videos</Header>
           <div>{videoList}</div>

@@ -16,14 +16,15 @@ export const Channel = styled.div`
   height: 150px;
   border-radius: 8px;
   display: inline-block;
-  margin: 25px 25px;
+  margin: 15px 20px;
   vertical-align: top;
   text-align: left;
   transition: 200ms;
+  position: relative;
   &:hover {
     cursor: pointer;
     margin-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   &:hover ${Image} {
     width: 180px;
@@ -33,7 +34,7 @@ export const Channel = styled.div`
     margin-bottom: 20px;
   }
   @media (max-width: 768px) {
-    max-width: 320px;
+    max-width: 300px;
   }
 `;
 
@@ -43,6 +44,7 @@ export const Content = styled.div`
 
 export const Text = styled.div`
   flex: 2;
+  max-width: 240px;
 `;
 
 export const Description = styled.small`
@@ -68,6 +70,7 @@ export const Title = styled.strong`
 export const TitleBar = styled.div`
   padding: 8px 5px;
   padding-left: 75px;
+  padding-right: 25px;
   margin-right: 10px;
   margin-left: -60px;
   margin-bottom: 10px;
